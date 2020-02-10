@@ -1,0 +1,5 @@
+RewriteBase /pss
+
+RewriteCond %{HTTPS} off
+
+RewriteRule ^(.*) https://www.qsglobalevents.com/pss/$1 [R=301,L] 

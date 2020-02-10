@@ -1,0 +1,32 @@
+<?php
+
+function sendEmail($email,$subject,$message,$attach = false){
+
+  $CI = &get_instance();
+ $CI->load->library('email');
+ $CI->load->helper('path');
+  //$CI->email->set_newline("\r\n");
+  $CI->email->from($CI->config->item('admin_email'), $CI->config->item('admin_from_name'));
+  $CI->email->to($email);  
+  $CI->email->subject($subject);
+  if($attach){
+  $path = set_realpath('uploads/temp/');
+  
+  $CI->email->attach( $path.$attach);
+    
+  }
+  $CI->email->message($message);
+  
+   $r = $CI->email->send();
+   
+  if (!$r)
+  $CI->email->print_debugger();
+  
+ 
+ 
+  
+  
+ }
+
+
+?>
