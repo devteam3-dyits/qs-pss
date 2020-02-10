@@ -17,13 +17,13 @@ application/logs/*
 /vendor/
 
 #admin application
-admin/application/logs/*
-!admin/application/logs/index.html
-!admin/application/logs/.htaccess
-admin/vendor/
+/admin/application/logs/*
+!/admin/application/logs/index.html
+!/admin/application/logs/.htaccess
+/admin/vendor/
 
 #cm application
-cm/application/logs/*
-!cm/application/logs/index.html
-!cm/application/logs/.htaccess
-cm/vendor/
+/cm/application/logs/*
+!/cm/application/logs/index.html
+!/cm/application/logs/.htaccess
+/cm/vendor/
