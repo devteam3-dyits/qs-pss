@@ -11,19 +11,24 @@ user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 
 #application
-*/application/logs/*
-!*/application/logs/index.html
-!*/application/logs/.htaccess
-*/vendor/
+# */application/logs/*
+# !*/application/logs/index.html
+# !*/application/logs/.htaccess
+# */vendor/
 
-# admin application
-/admin/application/logs/*
-!/admin/application/logs/index.html
-!/admin/application/logs/.htaccess
-/admin/vendor/
+# # admin application
+# /admin/application/logs/*
+# !/admin/application/logs/index.html
+# !/admin/application/logs/.htaccess
+# /admin/vendor/
 
-# #cm application
-/cm/application/logs/*
-!/cm/application/logs/index.html
-!/cm/application/logs/.htaccess
-/cm/vendor/
+# # #cm application
+# /cm/application/logs/*
+# !/cm/application/logs/index.html
+# !/cm/application/logs/.htaccess
+# /cm/vendor/
+
+**logs/*
+!logs/index.html
+!logs/.htaccess
+**vendor/
