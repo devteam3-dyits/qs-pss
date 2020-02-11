@@ -28,7 +28,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 # !/cm/application/logs/.htaccess
 # /cm/vendor/
 
-**logs/*
+**/application/logs/*
 !logs/index.html
 !logs/.htaccess
 **vendor/
