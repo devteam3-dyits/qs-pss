@@ -43,6 +43,8 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="<?php echo base_url(); ?>assets/js/vendor/modernizr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/vendor/jquery.min.js"></script>
+
         
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

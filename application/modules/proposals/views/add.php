@@ -6,19 +6,25 @@
                 <!-- END Horizontal Form Title -->
                  <?php if(validation_errors()){?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo validation_errors(); ?>
 										</div>
 				
 				<?php } elseif(isset($error)){ ?>
-				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				                        <div class="alert alert-danger">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $error; ?>
 										</div>
-				<?php } ?>
+				<?php }elseif(isset($upload_error)){ ?>
+                    <div class="alert alert-danger">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
+										<?php echo $upload_error['error'] ?>
+										</div>
+                <?php } ?>
                
                 <!-- Horizontal Form Content -->
-                <form id="form-proposal" action="<?php echo site_url('proposals/add'); ?>" method="post" class="form-horizontal form-bordered" >
+                <form id="form-proposal" action="<?php echo site_url('proposals/add'); ?>" 
+                    method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="event_id">Events</label>
                         <div class="col-md-9">
@@ -212,12 +218,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="allow_share">Allow QS to share my presentaion on official event website</label>
+                        <label class="col-md-3 control-label" for="allow_share">
+                            Allow QS to share my presentaion on official event website</label>
                         <div class="col-md-9">
                             <select id="allow_share" name="allow_share" class="form-control" required>
 							    <option value="0" selected>No</option>
 							    <option value="1">Yes</option>
 							</select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="vfile">
+                            Upload video
+                        </label>
+                        <div class="col-md-9">
+                            <input type="file" name="vfile" id="vfile" required />
                         </div>
                     </div>
                     <div class="form-group form-actions">
@@ -229,5 +244,4 @@
                 </form>
                 <!-- END Horizontal Form Content -->
             </div>
-			
 			

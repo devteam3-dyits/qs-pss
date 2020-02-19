@@ -4,25 +4,25 @@
   <!-- END Horizontal Form Title -->
 				<?php if($this->session->flashdata('alert_success')){ ?>
                     <div class="alert alert-success">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $this->session->flashdata('alert_success'); ?>
 										
 										</div>
 				<?php }elseif($this->session->flashdata('alert_error')){ ?>
                     <div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $this->session->flashdata('alert_error'); ?>
 										
 										</div>
 				<?php }elseif(validation_errors()){?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo validation_errors(); ?>
 										</div>
 				
 				<?php } elseif(isset($error)){ ?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $error; ?>
 										</div>
 				<?php } ?>
@@ -125,6 +125,12 @@
   ?> 
   </td>
   </tr>
+  <tr><td><strong>Video Source :</strong></td>
+    <td>
+        <a class="btn btn-sm btn-primary" href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
+            target="_blank">Open video</a> 
+    </td>
+</tr>
   </table>
 			   </div>
 
@@ -285,4 +291,3 @@ if($cops){ ?>
             </div>
 			
 				
-		

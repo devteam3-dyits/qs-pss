@@ -17,7 +17,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'https://www.qsglobalevents.com/pss/';
+// $config['base_url'] = 'https://www.qsglobalevents.com/pss/';
+$config['base_url'] = 'http://localhost/qspss/';
+
 $config['modules_locations'] = array(
         APPPATH.'modules/' => '../modules/',
     );

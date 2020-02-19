@@ -117,9 +117,6 @@ class Model_proposal extends CI_Model {
   
    }
    
-	
-
-
 
 }
 
