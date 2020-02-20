@@ -379,10 +379,10 @@
         </div>
 
 
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <a data-toggle="modal" data-target="#myModal2" class="btn btn-primary " style="margin-top:15px;width:45%;float:left">Search</a>
             
-        </div>
+        </div> -->
         
 
     </div>
@@ -432,12 +432,12 @@
                 <tr>
 
                     <th>Proposal Title</th>
-                    <th>Proposer Name</th>
-                    <th>University</th>
-                    <th>Event Name</th>
-                    <th>Session Format</th>
-                    <th>Session Track</th>
-                    <th>Assigned Committee Member</th>
+                    <th>Proposer</th>
+                    <th>Institution</th>
+                    <th>Event</th>
+                    <th>Format</th>
+                    <th>Track</th>
+                    <th>Assigned CM</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
