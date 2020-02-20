@@ -10,7 +10,8 @@ class Events extends Controller  {
 public function index(){
 
 $this->db->select('events.*');
-$data['events'] = $this->db->get('events')->result();
+$data['events'] = $this->db->where('is_archived', 0)->order_by('event_created', 'DESC')->get('events')->result();
+$data['archived_events'] = $this->db->where('is_archived', 1)->order_by('event_created', 'DESC')->get('events')->result();
 $this->layout->load_layout('events/index',$data);	
 }
 
@@ -265,6 +266,30 @@ $data_array = array();
 	   $this->Model_activity->save($data_array);
  redirect('events/view/'.$id);
 
+}
+
+public function archive($id){
+	$this->load->model('events/Model_event');
+
+	   $data_array = array();  
+	   $data_array['is_archived'] = 1;
+	   $this->Model_event->save($id, $data_array);
+	   
+	  
+  $this->session->set_flashdata('alert_success','Event Archived Successfully');
+       redirect('events/index');
+}
+
+public function unarchive($id){
+	$this->load->model('events/Model_event');
+
+	   $data_array = array();  
+	   $data_array['is_archived'] = 0;
+	   $this->Model_event->save($id, $data_array);
+	   
+	  
+  $this->session->set_flashdata('alert_success','Event Un-archived Successfully');
+       redirect('events/index');
 }
 
 }
