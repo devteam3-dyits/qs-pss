@@ -23,23 +23,29 @@
         </div>
     <?php } ?>
 
-    <div class="row" style="padding-bottom:20px">
-        <div class="col-md-2">
+    <div class="row" style="padding-bottom:20px;">
+        <div class="col-md-12">
             <h5><strong>Filter by date</strong></h5>
-            <form method="post" action="" id="filter_date_form">
+            <form method="post" action="" id="filter_date_form" class="form-inline">
                 <div class="form-group">
                     <label for="from_date">From : </label>
-                    <input type="text" id="from_date" name="from_date" class="form-control input-datepicker" data-date-format="mm/dd/yyyy" value="<?php if ($from_date != '') echo $from_date;
-                                                                                                                                                    else echo date('m/d/Y'); ?>">
+                    <input type="text" id="from_date" name="from_date" class="form-control input-datepicker" 
+                        data-date-format="mm/dd/yyyy" value="<?php if ($from_date != '') echo $from_date;
+                                                            else echo date('m/d/Y'); ?>" style="margin-right:10px">
                     <label for="from_date">To : </label>
-                    <input type="text" id="to_date" name="to_date" class="form-control input-datepicker" data-date-format="mm/dd/yyyy" value="<?php if ($to_date != '') echo $to_date;
-                                                                                                                                                else echo date('m/d/Y'); ?>">
-                    <button type="button" class="btn btn-primary pt-1" id="filter_date_butt" style="margin-top:5px">Filter</button>
+                    <input type="text" id="to_date" name="to_date" class="form-control input-datepicker" 
+                        data-date-format="mm/dd/yyyy" value="<?php if ($to_date != '') echo $to_date;
+                                                                else echo date('m/d/Y'); ?>">
+                    <button type="button" class="btn btn-primary pt-1" id="filter_date_butt">Filter</button>
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="row" style="padding-bottom:20px">
+
         <div class="col-md-2">
-            <h5><strong>Filter by date</strong></h5>
+            <h5><strong>Filter by Event</strong></h5>
             <form method="post" action="" id="filter_form">
                 <div class="form-group">
                     <label for="from_date">Select an event : </label>
@@ -383,14 +389,14 @@
             <a data-toggle="modal" data-target="#myModal2" class="btn btn-primary " style="margin-top:15px;width:45%;float:left">Search</a>
             
         </div> -->
-        
+
 
     </div>
 
-    <div class="row" style="padding:20px">
-        <div class="col-md-8" style="padding-left:0;text-align:left;">
+    <div class="row" style="padding:15px">
+        <div class="col-md-9" style="padding-left:0;text-align:left;">
 
-            <form method="post" action="" id="search_form" >
+            <form method="post" action="" id="search_form">
                 <!-- <label>Search by :</label> -->
                 <div class="form-group">
                     <input type="text" class="form-control " name="search" value="<?php echo $search; ?>" placeholder="Enter Searching keyword" required />
@@ -414,13 +420,12 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-4" style="padding-right:0;text-align:right;">
+        <div class="col-md-3" style="padding-right:0;text-align:center;">
             <a href="<?php echo site_url('proposals/export_all'); ?>" 
-            data-target="#expallModal2" class="btn btn-primary " 
-            >Export to Bizzabo</a>
+                data-target="#expallModal2" class="btn btn-primary " style="width: 170px;">Export to Bizzabo</a>
 
-            <a data-toggle="modal" data-target="#expallModalPI" class="btn btn-primary " 
-            >Presenter Info Export</a>
+            <a data-toggle="modal" data-target="#expallModalPI" class="btn btn-primary " style="width: 170px;">
+                    Presenter Info Export</a>
 
         </div>
     </div>
