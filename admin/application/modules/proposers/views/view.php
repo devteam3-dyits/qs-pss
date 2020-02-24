@@ -138,6 +138,16 @@
   <?php echo date('Y-m-d',strtotime($proposer->user_created)); ?> 
   </td>
   </tr>
+  <tr>
+   <td>
+  <strong>Learn more : </strong>
+  </td>
+  <td>
+     <a href="https://www.google.com/search?q=<?php echo $proposer->first_name." ". $proposer->last_name ?>"
+      class="btn btn-info btn-sm" target="_blank">
+     Search in Google</a>
+  </td>
+  </tr>
 
   </table>
    <?php if($proposer->verified == 0){ ?>
