@@ -7,18 +7,24 @@
                  <?php if(validation_errors()){?>
 				<div class="alert alert-danger">
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
-										<?php echo validation_errors(); ?>
+                                        <?php 
+                                        echo "echo from validtion errors";
+                                        echo validation_errors(); ?>
 										</div>
 				
 				<?php } elseif(isset($error)){ ?>
 				                        <div class="alert alert-danger">
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
-										<?php echo $error; ?>
+                                        <?php 
+                                        echo "echo from errors";
+                                        echo $error; ?>
 										</div>
 				<?php }elseif(isset($upload_error)){ ?>
                     <div class="alert alert-danger">
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">�</button>
-										<?php echo $upload_error['error'] ?>
+                                        <?php 
+                                        echo "echo from validtion upload errors";
+                                        print_r($upload_error) ?>
 										</div>
                 <?php } ?>
                
@@ -233,6 +239,18 @@
                         </label>
                         <div class="col-md-9">
                             <input type="file" name="vfile" id="vfile" required />
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                        <span style="font-size: 12px;">To ensure you get the most out of the conference and help us place you in the best position 
+                        within the program, please upload a short, one minute video of you presenting the core ideas of 
+                        your proposal. Videos do not need to be high-definition and can be recorded on a webcam or mobile 
+                        phone.</br>
+
+                        Please present your proposal the way you would do so at the conference.</span>
                         </div>
                     </div>
                     <div class="form-group form-actions">
