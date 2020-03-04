@@ -79,7 +79,7 @@ class Proposals extends Controller
 			$config['file_name']			= $fileName;
 			$config['upload_path']          = './uploads/proposals/';
 			$config['allowed_types']        = 'mp4';
-			$config['max_size']             = 100;//Maximum upload limit 60Mb
+			$config['max_size']             = 60000;//Maximum upload limit 60Mb
 			$config['max_width']            = 5024;
 			$config['max_height']           = 2068;
 
@@ -88,10 +88,7 @@ class Proposals extends Controller
 
 			if (!$this->upload->do_upload('vfile')) {
 				$data['upload_error'] = $this->upload->display_errors();
-				//$error = array('error' => $this->upload->display_errors());
-				//$this->load->view('proposals/add', $error);
-				//echo "upload failed";
-
+	
 			} else {
 
 				$upload = array('upload_data' => $this->upload->data());
@@ -125,23 +122,15 @@ class Proposals extends Controller
 					$this->Model_proposal->sendQueuedEmail($data_array);
 					$this->session->set_flashdata('alert_success', lang('proposal_add_queued'));
 				}
-				redirect('proposals/index');
-				//echo "upload pass";
-
-				
+				redirect('proposals/index');			
 			}
 			
 		}
 		
-		//die("ERROR:". printf($data['error']));
 		$data['events'] = $this->db->where('enabled', '1')
 								->where('open', '1')->get('events')->result();
 
-		$this->layout->load_layout('proposals/add', $data);
-
-		// echo "add function";
-
-		
+		$this->layout->load_layout('proposals/add', $data);	
 
 	}
 
