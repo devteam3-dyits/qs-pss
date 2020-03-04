@@ -4,25 +4,25 @@
   <!-- END Horizontal Form Title -->
 				<?php if($this->session->flashdata('alert_success')){ ?>
                     <div class="alert alert-success">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $this->session->flashdata('alert_success'); ?>
 										
 										</div>
 				<?php }elseif($this->session->flashdata('alert_error')){ ?>
                     <div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $this->session->flashdata('alert_error'); ?>
 										
 										</div>
 				<?php }elseif(validation_errors()){?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo validation_errors(); ?>
 										</div>
 				
 				<?php } elseif(isset($error)){ ?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $error; ?>
 										</div>
 				<?php } ?>
@@ -97,7 +97,21 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
   ?> 
   </td>
   </tr>
+
   <tr <?php if($proposal->status == 1 || $proposal->status == 0)echo 'style="display:none"'; ?>><td><strong><?php if($proposal->status == 3) echo 'Reason for rejecting'; elseif($proposal->status == 2) echo 'Reason for provisionally accepting'; ?> :</strong></td><td><?php echo $proposal->reason; ?></td></tr>
+  <tr><td><strong>Video Source :</strong></td>
+    <td>
+    <?php
+            if($proposal->video_url === ""){ ?>
+                    <span style="font-size:12px;color: red;">No video found</span>
+                <?php }else{ ?>
+                <a class="btn btn-sm btn-primary" 
+                    href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
+                    target="_blank">Open video</a> 
+            <?php   
+                } ?>
+    </td>
+</tr>
   <tr><td><strong>This proposal updated by :</strong></td><td><?php echo $proposal->status_by; ?></td></tr>
   </table>
 			   </div>
