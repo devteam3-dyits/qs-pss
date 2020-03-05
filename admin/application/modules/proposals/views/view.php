@@ -125,7 +125,7 @@
   ?> 
   </td>
   </tr>
-  <tr><td><strong>Video Source :</strong></td>
+<tr><td><strong>Presentation Summary :</strong></td>
     <td>
     <?php
             if($proposal->video_url === ""){ ?>
@@ -133,7 +133,7 @@
                 <?php }else{ ?>
                 <a class="btn btn-sm btn-primary" 
                     href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
-                    target="_blank">Open video</a> 
+                    target="_blank">Watch now!</a> 
             <?php   
                 } ?>
     </td>

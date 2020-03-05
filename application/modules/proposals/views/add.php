@@ -248,7 +248,7 @@
                         <span style="font-size: 12px;">To ensure you get the most out of the conference and help us place you in the best position 
                         within the program, please upload a short, one minute video of you presenting the core ideas of 
                         your proposal. Videos do not need to be high-definition and can be recorded on a webcam or mobile 
-                        phone.</br>
+                        phone.</br></br>
 
                         Please present your proposal the way you would do so at the conference.</span>
                         </div>

@@ -105,7 +105,7 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
   
   <tr><td><strong>Assigned Committee Member :</strong></td><td><?php echo $assigned_cm->first_name.''.$assigned_cm->last_name ; ?></td></tr>
   <tr>
-    <td><strong>Video Source :</strong></td>
+    <td><strong>Presentation Summary :</strong></td>
     <td>
         <?php
             if($proposal->video_url === ""){ ?>
@@ -113,7 +113,7 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
                 <?php }else{ ?>
                 <a class="btn btn-sm btn-primary" 
                     href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
-                    target="_blank">Open video</a> 
+                    target="_blank">Watch Now!</a> 
             <?php   
                 } ?>
     </td>

@@ -99,7 +99,7 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
   </tr>
 
   <tr <?php if($proposal->status == 1 || $proposal->status == 0)echo 'style="display:none"'; ?>><td><strong><?php if($proposal->status == 3) echo 'Reason for rejecting'; elseif($proposal->status == 2) echo 'Reason for provisionally accepting'; ?> :</strong></td><td><?php echo $proposal->reason; ?></td></tr>
-  <tr><td><strong>Video Source :</strong></td>
+  <tr><td><strong>Presentation Summary :</strong></td>
     <td>
     <?php
             if($proposal->video_url === ""){ ?>
@@ -107,7 +107,7 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
                 <?php }else{ ?>
                 <a class="btn btn-sm btn-primary" 
                     href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
-                    target="_blank">Open video</a> 
+                    target="_blank">Watch Now!</a> 
             <?php   
                 } ?>
     </td>
