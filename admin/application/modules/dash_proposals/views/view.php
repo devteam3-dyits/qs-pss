@@ -112,7 +112,7 @@ elseif($proposal->status == 4)echo '<span  class="label label-danger">Queued</sp
                     <span style="font-size:12px;color: red;">No video found</span>
                 <?php }else{ ?>
                 <a class="btn btn-sm btn-primary" 
-                    href="http://localhost/qspss/uploads/proposals/<?php echo $proposal->video_url?>" 
+                    href="<?php echo $proposal->video_url?>" 
                     target="_blank">Watch Now!</a> 
             <?php   
                 } ?>

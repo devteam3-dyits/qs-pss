@@ -40,7 +40,7 @@
 							if($events){
 								foreach($events as $event){
 							
-							echo '<option value="'.$event->event_id.'">'.$event->event_name.'</option>';
+							        echo '<option value="'.$event->event_id.'">'.$event->event_name.'</option>';
 								}
 							}
 							?>
@@ -234,11 +234,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="vfile">
-                            Upload video
+                        <label class="col-md-3 control-label" for="video_url">
+                            Video Link
                         </label>
                         <div class="col-md-9">
-                            <input type="file" name="vfile" id="vfile" required />
+                            <input type="text" name="video_url" id="video_url" class="form-control" 
+                                placeholder="Paste video URL here" required />
                         </div>
                         
                     </div>

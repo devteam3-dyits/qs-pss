@@ -36,101 +36,63 @@ class Proposals extends Controller
 		$this->form_validation
 			->set_rules($this->Model_proposal->validation_rules());
 
-		if ($this->form_validation->run()) {
-			$data_array = array();
-			$data_array['event_id'] = $this->input->post('event_id', true);
-			
-			//Retriving event name by the ID
-			$eventName = $this->db->select('event_name')
-							->where('event_id', $data_array['event_id'])
-							->get('events')->result();
-			$data_array['session_track'] = $this->input->post('session_track', true);
-			
-			$cms = $this->db->where('event_id', $data_array['event_id'])
+			if ($this->form_validation->run()) {
+				$data_array = array();  
+				$data_array['event_id'] = $this->input->post('event_id',true);
+				$data_array['session_track'] = $this->input->post('session_track',true);
+				$cms = $this->db->where('event_id', $data_array['event_id'])
 				->where('track', $data_array['session_track'])
 				->select('cm_id')->get('cm_assignments')->result();
-			
-
-			$max = sizeof($cms) - 1;
-			$min = 0;
-			$rand = rand($min, $max);
-
-			$data_array['assigned_cm'] = $cms[$rand]->cm_id;
-			$data_array['proposal_title'] = $this->input->post('proposal_title', true);
-			$data_array['session_format'] = $this->input->post('session_format', true);
-
-			$data_array['presentation'] = $this->input->post('presentation', true);
-			$data_array['remark'] = $this->input->post('remark', true);
-			$data_array['allow_share'] = $this->input->post('allow_share', true);
-			$data_array['max_cop'] = $this->input->post('max_cop', true);
-			$data_array['tags'] = $this->input->post('tags', true);
-			$data_array['target_audience'] = $this->input->post('target_audience', true);
-
-			$not_queued = $this->check_track($data_array['event_id'], $data_array['session_track']);
-			if ($not_queued == false)  $data_array['status'] = 4;
-
-
-			//upload media file
-
-			//Regenerating file name
-			$fileName = $eventName[0]->event_name."-".$data_array['proposal_title']."-". date('m-d-Y');
-			$fileName = str_replace(' ', '_', $fileName);
-
-			$config['file_name']			= $fileName;
-			$config['upload_path']          = './uploads/proposals/';
-			$config['allowed_types']        = 'mp4';
-			$config['max_size']             = 60000;//Maximum upload limit 60Mb
-			$config['max_width']            = 5024;
-			$config['max_height']           = 2068;
-
-			
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('vfile')) {
-				$data['upload_error'] = $this->upload->display_errors();
-	
-			} else {
-
-				$upload = array('upload_data' => $this->upload->data());
-				$data_array['video_url'] = $upload['upload_data']['file_name'];
+				$max = sizeof($cms)-1;
+				$min = 0;
+				$rand = rand($min,$max);
+				$data_array['assigned_cm'] = $cms[$rand]->cm_id;
+				$data_array['proposal_title'] = $this->input->post('proposal_title',true);
+				$data_array['session_format'] = $this->input->post('session_format',true);
 				
-
-				//saving proposal into database
+				 $data_array['presentation'] = $this->input->post('presentation',true);
+				$data_array['remark'] = $this->input->post('remark',true);	
+				$data_array['allow_share'] = $this->input->post('allow_share', true);
+				$data_array['video_url'] = $this->input->post('video_url', true);
+				$data_array['max_cop'] = $this->input->post('max_cop',true);
+				$data_array['tags'] = $this->input->post('tags',true);	
+				$data_array['target_audience'] = $this->input->post('target_audience',true);	
+				$not_queued = $this->check_track($data_array['event_id'],$data_array['session_track']);
+				if( $not_queued == false)  $data_array['status'] = 4;
+			   
 				$proposal_id = $this->Model_proposal->save(NULL, $data_array);
-
-				//Adding Co-Presenters
+				
 				$max_cop = $data_array['max_cop'];
-				for ($i = 1; $i <= $max_cop; $i++) {
-					$cdata_array = array();
-					$cdata_array['salutation'] = $this->input->post('salutation' . $i);
-					$cdata_array['first_name'] = $this->input->post('first_name' . $i, true);
-					$cdata_array['last_name'] = $this->input->post('last_name' . $i, true);
-					$cdata_array['gender'] = $this->input->post('gender' . $i, true);
-					$cdata_array['email'] = $this->input->post('email' . $i, true);
-					$cdata_array['job_title'] = $this->input->post('job_title' . $i, true);
-					$cdata_array['university'] = $this->input->post('university' . $i, true);
-					$cdata_array['department'] = $this->input->post('department' . $i, true);
-					$cdata_array['mail'] = $this->input->post('mail' . $i, true);
-					$cdata_array['summary'] = $this->input->post('summary' . $i, true);
-					$cdata_array['proposal_id'] = $proposal_id;
-					$id = $this->Model_cop->save(NULL, $cdata_array);
+				for($i=1;$i<=$max_cop;$i++){
+				$cdata_array = array();  
+				$cdata_array['salutation'] = $this->input->post('salutation'.$i);
+				$cdata_array['first_name'] = $this->input->post('first_name'.$i,true);
+				$cdata_array['last_name'] = $this->input->post('last_name'.$i,true);
+				$cdata_array['gender'] = $this->input->post('gender'.$i,true);
+				$cdata_array['email'] = $this->input->post('email'.$i,true);
+				$cdata_array['job_title'] = $this->input->post('job_title'.$i,true);
+				$cdata_array['university'] = $this->input->post('university'.$i,true);
+				$cdata_array['department'] = $this->input->post('department'.$i,true);
+				$cdata_array['mail'] = $this->input->post('mail'.$i,true);
+				$cdata_array['summary'] = $this->input->post('summary'.$i,true);
+				$cdata_array['proposal_id'] = $proposal_id;
+				$id = $this->Model_cop->save(NULL, $cdata_array);
+				
+				}	   
+				if( $not_queued == true) {
+				 $this->Model_proposal->sendConfirmEmail($data_array);    
+				$this->session->set_flashdata('alert_success',lang('proposal_add_success'));
 				}
-				if ($not_queued == true) {
-					$this->Model_proposal->sendConfirmEmail($data_array);
-					$this->session->set_flashdata('alert_success', lang('proposal_add_success'));
-				} else {
-					$this->Model_proposal->sendQueuedEmail($data_array);
-					$this->session->set_flashdata('alert_success', lang('proposal_add_queued'));
+				else {
+					 $this->Model_proposal->sendQueuedEmail($data_array);
+					$this->session->set_flashdata('alert_success',lang('proposal_add_queued'));
 				}
-				redirect('proposals/index');			
-			}
-			
-		}
-		
-		$data['events'] = $this->db->where('enabled', '1')
-								->where('open', '1')->get('events')->result();
-
-		$this->layout->load_layout('proposals/add', $data);	
+				redirect('proposals/index');
+		 
+				}
+		 $data = array();
+		 $data['events'] = $this->db->where('enabled','1')->where('open','1')->get('events')->result();		    
+		 $this->layout->load_layout('proposals/add',$data);
 
 	}
 
