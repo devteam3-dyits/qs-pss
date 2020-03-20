@@ -50,7 +50,7 @@ class Proposals extends Controller
 				$data_array['proposal_title'] = $this->input->post('proposal_title',true);
 				$data_array['session_format'] = $this->input->post('session_format',true);
 				
-				 $data_array['presentation'] = $this->input->post('presentation',true);
+				$data_array['presentation'] = $this->input->post('presentation',true);
 				$data_array['remark'] = $this->input->post('remark',true);	
 				$data_array['allow_share'] = $this->input->post('allow_share', true);
 				$data_array['video_url'] = $this->input->post('video_url', true);
@@ -78,15 +78,17 @@ class Proposals extends Controller
 				$cdata_array['proposal_id'] = $proposal_id;
 				$id = $this->Model_cop->save(NULL, $cdata_array);
 				
-				}	   
+				}	
+				   
 				if( $not_queued == true) {
-				 $this->Model_proposal->sendConfirmEmail($data_array);    
-				$this->session->set_flashdata('alert_success',lang('proposal_add_success'));
+				 	$this->Model_proposal->sendConfirmEmail($data_array);    
+					$this->session->set_flashdata('alert_success',lang('proposal_add_success'));
 				}
 				else {
-					 $this->Model_proposal->sendQueuedEmail($data_array);
+					$this->Model_proposal->sendQueuedEmail($data_array);
 					$this->session->set_flashdata('alert_success',lang('proposal_add_queued'));
 				}
+
 				redirect('proposals/index');
 		 
 				}
@@ -127,11 +129,14 @@ class Proposals extends Controller
 		if (trim($event->track_details) != '')
 			echo '<a href="https://' . $event->track_details . '" target="_blank" >Track details</a>';
 	}
+
 	public function edit($id)
 	{
 
 		$user_id = $this->session->userdata('user_id');
 		$proposal = $this->db->where('proposal_id', $id)->get('proposals')->row();
+
+
 		if ($proposal->proposer_id  != $user_id) {
 			$this->session->set_flashdata('alert_error', 'This Proposal not belongs to you');
 			redirect('proposals/index');
@@ -141,9 +146,14 @@ class Proposals extends Controller
 			$this->session->set_flashdata('alert_error', 'Access denied');
 			redirect('proposals/index');
 		}
+
 		$this->load->model('proposals/Model_cop');
 		$this->load->model('proposals/Model_proposal');
-		$this->form_validation->set_rules($this->Model_proposal->validation_rules());
+
+	
+		$this->form_validation
+			->set_rules($this->Model_proposal->validation_rules());	
+
 		if ($this->form_validation->run()) {
 			$data_array = array();
 			$data_array['event_id'] = $this->input->post('event_id', true);
@@ -152,10 +162,14 @@ class Proposals extends Controller
 			$data_array['session_track'] = $this->input->post('session_track', true);
 			$data_array['presentation'] = $this->input->post('presentation', true);
 			$data_array['remark'] = $this->input->post('remark', true);
+			$data_array['allow_share'] = $this->input->post('allow_share', true); //edit
+			$data_array['video_url'] = $this->input->post('video_url', true); //edit
 			$data_array['status'] = 0;
 			$data_array['max_cop'] = $this->input->post('max_cop', true);
 			$data_array['tags'] = $this->input->post('tags', true);
 			$data_array['target_audience'] = $this->input->post('target_audience', true);
+
+			//var_dump($data_array);
 
 			if ($data_array['event_id'] != $proposal->event_id || $data_array['session_track'] != $proposal->session_track) {
 
@@ -176,6 +190,8 @@ class Proposals extends Controller
 			$not_limit_already = ($old_event_id ==  $data_array['event_id'] && $old_track ==  $data_array['session_track'] && $old_status != 4);
 
 			if ($not_queued == false  && !$not_limit_already)  $data_array['status'] = 4;
+
+			//die("DATA ARR:" . print_r($data_array));
 
 			$this->Model_proposal->save($id, $data_array);
 

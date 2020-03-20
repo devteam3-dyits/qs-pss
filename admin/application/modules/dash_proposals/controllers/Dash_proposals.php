@@ -134,9 +134,11 @@ $this->form_validation->set_rules($this->Model_proposal->validation_rules());
 	   $data_array['event_id'] = $this->input->post('event_id',true);
 	   $data_array['proposal_title'] = $this->input->post('proposal_title',true);
 	   $data_array['session_format'] = $this->input->post('session_format',true);
-	    $data_array['session_track'] = $this->input->post('session_track',true);
+		$data_array['session_track'] = $this->input->post('session_track',true);
 		$data_array['presentation'] = $this->input->post('presentation',true);
-       $data_array['remark'] = $this->input->post('remark',true);
+	   $data_array['remark'] = $this->input->post('remark',true);
+	   $data_array['allow_share'] = $this->input->post('allow_share', true); //edit
+		$data_array['video_url'] = $this->input->post('video_url', true); //edit
 	   
 	   $this->Model_proposal->save($id, $data_array);
 	   $data_array = array();	   

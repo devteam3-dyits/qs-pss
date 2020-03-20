@@ -7,13 +7,13 @@
                 <!-- END Horizontal Form Title -->
                  <?php if(validation_errors()){?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo validation_errors(); ?>
 										</div>
 				
 				<?php } elseif(isset($error)){ ?>
 				<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
 										<?php echo $error; ?>
 										</div>
 				<?php } ?>
@@ -104,6 +104,32 @@
                         <div class="col-md-9">
                             <textarea id="remark"  rows="5"  name="remark" class="form-control" placeholder="Enter Addition Remarks"><?php echo $proposal->remark; ?></textarea>
                             
+                        </div>
+					</div>
+					<div class="form-group">
+                        <label class="col-md-3 control-label" for="allow_share">
+                            Allow QS to share my presentaion on official event website</label>
+                        <div class="col-md-9">
+                            <select id="allow_share" name="allow_share" class="form-control" required>
+                                <?php
+                                    if($proposal->allow_share == 0){?>
+                                        <option value="0" selected>No</option>
+							            <option value="1">Yes</option>
+                                   <?php }else if($proposal->allow_share == 1){?>
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
+							            
+                                   <?php
+                                }?>
+							    
+							</select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="session_format">Video Link</label>
+                        <div class="col-md-9">
+                            <input type="text" id="video_url" name="video_url" class="form-control" 
+                                value="<?php echo $proposal->video_url; ?>" required/>                            
                         </div>
                     </div>
                     <div class="form-group form-actions">
